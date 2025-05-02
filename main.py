@@ -17,7 +17,13 @@ CARRIERS = {
 }
 
 PREVIOUS_WORD_FILE = "prev.txt"
+LOG_FILE = "wordleRuinerLog.txt"
 victims = [("7819297124", "verizon")]
+
+# Write to log
+def writeToLog(message):
+    with open("wordleRuinerLog.txt", 'a') as f:
+        f.write(message)
 
 # Set victims if they were passed in
 def getVictims():
@@ -39,7 +45,7 @@ def getWordleWord():
         if(match):
             return match.group(1)
     else:
-        print("[ERROR]: Failed to find match from tomsguide.com")
+        writeToLog("[ERROR]: Failed to find match from tomsguide.com")
         exit(1)
 
 # Save the Wordle word to prev.txt so we don't send multiple texts in a day
@@ -66,7 +72,7 @@ def ruinWordle():
     while(True):
         # Get the Wordle word from tomsguide.com
         word = getWordleWord()
-        
+
         # If the word hasn't changed, don't send a new text
         if(getPreviousWord() != word):
             # Get our victim info (either hardcoded or passed in as command line args)
@@ -75,7 +81,7 @@ def ruinWordle():
             # Send texts
             for v in victims:
                 sendText(v[0], v[1], f"{word} is today's Wordle word")
-                print(f"Sent to {v}...")
+                writeToLog(f"Sent to {v}...")
 
             # Save the word to our prev.txt file to remind ourselves we've already sent a text for today
             saveWord(word)
