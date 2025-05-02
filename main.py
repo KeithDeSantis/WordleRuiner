@@ -23,7 +23,7 @@ victims = [("7819297124", "verizon")]
 # Write to log
 def writeToLog(message):
     with open("wordleRuinerLog.txt", 'a') as f:
-        f.write(message)
+        f.write(message + "\n")
 
 # Set victims if they were passed in
 def getVictims():
