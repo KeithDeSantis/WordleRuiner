@@ -56,7 +56,6 @@ def getPreviousWord():
 def sendText(victim_number, victim_carrier, message):
     victim = victim_number + CARRIERS[victim_carrier]
     auth = (EMAIL, PASS)
-
     server = smtplib.SMTP(HOST, 587)
     server.starttls()
     server.login(auth[0], auth[1])
@@ -81,6 +80,8 @@ def ruinWordle():
 
         # Save the word to our prev.txt file to remind ourselves we've already sent a text for today
         saveWord(word)
+        
+        # Repeat every hour
         time.sleep(3600)
 
 if __name__ == "__main__":
