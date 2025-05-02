@@ -1,10 +1,7 @@
 import requests
 import re
 import sys
-import threading
-import asyncio
-from email.message import EmailMessage
-from typing import Collection, List, Tuple, Union
+import time
 import smtplib
 
 with open("email.txt", "r") as f:
@@ -20,7 +17,7 @@ CARRIERS = {
 }
 
 PREVIOUS_WORD_FILE = "prev.txt"
-victims = [("7819297124", "verizon")]
+victims = []
 
 # Set victims if they were passed in
 def getVictims():
@@ -67,22 +64,24 @@ def sendText(victim_number, victim_carrier, message):
 
 # This function ruins someone's day
 def ruinWordle():
-    # Get the Wordle word from tomsguide.com
-    word = getWordleWord()
-    # If the word hasn't changed, don't send a new text
-    if(getPreviousWord() == word):
-        return
-    
-    # Get our victim info (either hardcoded or passed in as command line args)
-    victims = getVictims()
-    
-    # Send texts
-    for v in victims:
-        sendText(v[0], v[1], f"{word} is today's Wordle word")
-        print(f"Sent to {v}...")
+    while(True):
+        # Get the Wordle word from tomsguide.com
+        word = getWordleWord()
+        # If the word hasn't changed, don't send a new text
+        if(getPreviousWord() == word):
+            return
+        
+        # Get our victim info (either hardcoded or passed in as command line args)
+        victims = getVictims()
+        
+        # Send texts
+        for v in victims:
+            sendText(v[0], v[1], f"{word} is today's Wordle word")
+            print(f"Sent to {v}...")
 
-    # Save the word to our prev.txt file to remind ourselves we've already sent a text for today
-    saveWord(word)
+        # Save the word to our prev.txt file to remind ourselves we've already sent a text for today
+        saveWord(word)
+        time.sleep(3600)
 
 if __name__ == "__main__":
     ruinWordle()
