@@ -66,20 +66,19 @@ def ruinWordle():
     while(True):
         # Get the Wordle word from tomsguide.com
         word = getWordleWord()
+        
         # If the word hasn't changed, don't send a new text
-        if(getPreviousWord() == word):
-            return
+        if(getPreviousWord() != word):
+            # Get our victim info (either hardcoded or passed in as command line args)
+            victims = getVictims()
 
-        # Get our victim info (either hardcoded or passed in as command line args)
-        victims = getVictims()
+            # Send texts
+            for v in victims:
+                sendText(v[0], v[1], f"{word} is today's Wordle word")
+                print(f"Sent to {v}...")
 
-        # Send texts
-        for v in victims:
-            sendText(v[0], v[1], f"{word} is today's Wordle word")
-            print(f"Sent to {v}...")
-
-        # Save the word to our prev.txt file to remind ourselves we've already sent a text for today
-        saveWord(word)
+            # Save the word to our prev.txt file to remind ourselves we've already sent a text for today
+            saveWord(word)
 
         # Repeat every hour
         time.sleep(3600)
