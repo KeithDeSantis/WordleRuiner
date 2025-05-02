@@ -18,7 +18,7 @@ CARRIERS = {
 
 PREVIOUS_WORD_FILE = "prev.txt"
 LOG_FILE = "wordleRuinerLog.txt"
-victims = [("7819297124", "verizon")]
+victims = []
 
 # Write to log
 def writeToLog(message):
