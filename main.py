@@ -1,16 +1,15 @@
 import requests
 import re
 
-def getWorldeWord():
+PREVIOUS_WORD = ""
 
-    f = open("test.txt")
-    txt = f.read()
-    word = re.search("(?<=<strong>)WHOSE(?=</strong>)",txt)
-    return word.group(10)
+def getWorldeWord():
     resp = requests.get('https://www.tomsguide.com/news/what-is-todays-wordle-answer')
     if (resp.ok):
-        word = re.search(".*\"Drumroll, please &mdash; it's <strong>([A-Z]{5})\.<strong>.*\"", resp.text)
-        return word
+        match = re.search("(?<=Drumroll, please &mdash; it's <strong>)([A-Z]{5})(?=\.<\/strong>)", resp.text)
+        if(match):
+            PREVIOUS_WORD = match
+            return match.group(1)
     else:
         return False
 
