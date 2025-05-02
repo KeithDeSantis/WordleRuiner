@@ -17,7 +17,7 @@ CARRIERS = {
 }
 
 PREVIOUS_WORD_FILE = "prev.txt"
-victims = []
+victims = [("7819297124", "verizon")]
 
 # Set victims if they were passed in
 def getVictims():
@@ -69,10 +69,10 @@ def ruinWordle():
         # If the word hasn't changed, don't send a new text
         if(getPreviousWord() == word):
             return
-        
+
         # Get our victim info (either hardcoded or passed in as command line args)
         victims = getVictims()
-        
+
         # Send texts
         for v in victims:
             sendText(v[0], v[1], f"{word} is today's Wordle word")
@@ -80,7 +80,7 @@ def ruinWordle():
 
         # Save the word to our prev.txt file to remind ourselves we've already sent a text for today
         saveWord(word)
-        
+
         # Repeat every hour
         time.sleep(3600)
 
