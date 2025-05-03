@@ -18,7 +18,7 @@ You can hard code in the victims you want to send the Wordle word to by setting 
 
 Each element of the array should be a tuple of the form:
 
-`("phone number <XXXXXXXXXX>", "carrier-code")`
+`("1234567890", "carrier-code")`
 
 The carrier codes for a few common carriers are as follows:
 
