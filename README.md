@@ -1,6 +1,6 @@
 # **<u> Wordle Ruiner </u>**
 
-A made this to ruin my friend's days and text them the Wordle answer before they got the chance to do it themselves. I know this is evil, but I think it's kinda funny and turned it off once they figured out it was me.
+I made this to ruin my friend's days and text them the Wordle answer before they got the chance to do it themselves. I know this is evil, but I think it's kinda funny and turned it off once they figured out it was me.
 
 ___
 ## **<u> Running the script </u>**
