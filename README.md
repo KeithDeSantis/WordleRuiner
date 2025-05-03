@@ -10,7 +10,7 @@ To run WordleRuiner, you'll need two files that are included in the `.gitignore`
 * `email.txt`
 * `pass.txt`
 
-These will include an email account and application password to said email account that you control, this is what will send the texts.
+These will include an email account and application password to an email account that you control, this is what will send the texts.
 
 I followed [this guide](https://medium.com/testingonprod/how-to-send-text-messages-with-python-for-free-a7c92816e1a4) on setting up my email accounts permissions and generating the application password.
 
